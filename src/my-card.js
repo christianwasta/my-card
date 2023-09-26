@@ -1,25 +1,19 @@
 import { LitElement, html, css } from 'lit';
 
-const logo = new URL('../assets/open-wc-logo.svg', import.meta.url).href;
-
 class MyCard extends LitElement {
   static properties = {
     header: { type: String },
+
+  }
+
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
   }
 
   static styles = css`
     :host {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      font-size: 100%;
-      color: #1a2b42;
-      max-width: 960px;
-      margin: 0 auto;
       text-align: center;
-      background-color: var(--my-card-background-color);
     }
 
     .cardimage {
@@ -36,10 +30,6 @@ class MyCard extends LitElement {
     #nob:hover, #nob:focus {
       background-color: black;
       color: white;
-    }
-
-    main {
-      flex-grow: 1;
     }
 
     .card{
@@ -66,8 +56,8 @@ class MyCard extends LitElement {
   render() {
     return html`
       <main>
-        <button id="nob">Duplicate</button>
-        <button id="background-color">Change Background Color</button>
+        <button id="nob" @click=${this.duplicate}>Duplicate</button>
+        <button id="background-color" @click=${this.backgroundColor}>Change Background Color</button>
         <button id="change-heading">Change Heading Text</button>
         <button id="delete-last-card">Delete Last Card</button>
         <div class="card">
@@ -78,18 +68,31 @@ class MyCard extends LitElement {
           <button id="details">Details</button>
         </div>
       </main>
-
-      <p class="app-footer">
-        🚽 Made with love by
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://github.com/open-wc"
-          >open-wc</a
-        >.
-      </p>
     `;
   }
+
+  duplicate() {
+    const elem = this.shadowRoot.querySelector(".card");
+    const clone = elem.cloneNode(true);
+    this.shadowRoot.appendChild(clone);
+  };
+
+
+  backgroundColor() {
+    const elem = this.shadowRoot.querySelector(".card");
+    const backgroundColor = elem.style.backgroundColor;
+
+    if (backgroundColor === 'beige') {
+      elem.style.backgroundColor = 'green';
+    } else {
+      elem.style.backgroundColor = 'beige';
+    }
+  };
+
+  
+
+
+
 }
 
 customElements.define('my-card', MyCard);
