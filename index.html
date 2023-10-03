@@ -8,21 +8,69 @@
   <base href="/">
 
   <style>
-    html,
     body {
       margin: 0;
       padding: 0;
       font-family: sans-serif;
       background-color: #ededed;
     }
+    
+    
   </style>
   <title>my-card</title>
 </head>
 
 <body>
-  <my-card></my-card>
+
+  <div class="btn-wrapper">
+    <button id="nob">Duplicate</button>
+    <button id="background-color">Change Background Color</button>
+    <button id="change-heading">Change Heading Text</button>
+    <button id="delete-last-card">Delete Last Card</button>
+  </div>
+
+  <div id="app">
+    <my-card information="Text1"></my-card>
+    <my-card name="card2" information="Text2"><button slot="slotbutton">text</button></my-card>
+  </div>
+  
 
   <script type="module" src="./src/my-card.js"></script>
+  <script>
+    const cloneButton = document.querySelector("#nob");
+
+    cloneButton.addEventListener('click', () => {
+      const elem = document.querySelector("my-card");
+      elem.insertAdjacentElement('afterend', elem.cloneNode());
+    });
+
+
+  const changeColor = document.querySelector("#background-color");
+
+  changeColor.addEventListener('click', () => {
+    const elem = document.querySelector("my-card");
+    elem.variation = !elem.variation;
+  });
+
+  const changeName = document.querySelector("#change-heading");
+
+  changeName.addEventListener('click', () => {
+    let name = prompt("Enter your name");
+
+    if (name){
+      document.querySelector("my-card").name = name;
+    }
+  });
+
+  const deleteButton = document.querySelector("#delete-last-card");
+
+  deleteButton.addEventListener('click', () => {
+    const allCardClones = document.querySelectorAll("my-card");
+    if (allCardClones.length > 1) {
+      allCardClones[allCardClones.length - 1].remove();
+    }
+  });
+  </script>
 </body>
 
 </html>
