@@ -66,4 +66,5 @@ class MyCard extends LitElement {
 
 }
 
-customElements.define('my-card', MyCard);
+customElements.define(MyCard.tag, MyCard);
+export { MyCard };
