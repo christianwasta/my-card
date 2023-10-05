@@ -1,9 +1,9 @@
 {
-  "name": "wasta-card",
+  "name": "wasta-card2",
   "description": "Webcomponent my-card following open-wc recommendations",
   "license": "MIT",
   "author": "my-card",
-  "version": "0.0.2",
+  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "test": "web-test-runner --coverage",
