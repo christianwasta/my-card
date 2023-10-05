@@ -66,4 +66,4 @@ class MyCard extends LitElement {
 
 }
 
-customElements.define('my-card', MyCard);
+customElements.define('wasta-card', MyCard);
